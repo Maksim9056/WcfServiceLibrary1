@@ -36,10 +36,15 @@ namespace WcfServiceLibrary1
             }
             return composite;
         }
+        [DataContract]
 
         public class Contrack
         {
+            [DataMember]
+
             public int Id { get; set; }
+            [DataMember]
+
             public string Name_Contrack { get; set; }
             public Contrack(int id, string name_Contrack)
             {
