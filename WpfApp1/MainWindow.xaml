@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Контракт КТ2 DB " Height="450" Width="800">
     <Grid>
         <Button Content="Создать" Click="acceptButton_Click" HorizontalAlignment="Left" Margin="547,149,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Dom"   HorizontalAlignment="Left" Margin="572,23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Dom"   HorizontalAlignment="Left" Margin="572,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="Data" 
                  SelectedCellsChanged="Data_SelectedCellsChanged"
                   AutoGenerateColumns="False" 
@@ -27,7 +27,12 @@
                 <DataGridTextColumn Header="Name_Contrack" Binding="{Binding Name_Contrack}" Width="Auto"  />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Margin="572,61,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox  x:Name="filtr" HorizontalAlignment="Left" Margin="572,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Удалить" Click="Button_Click" HorizontalAlignment="Left" Margin="547,184,0,0" VerticalAlignment="Top"/>
+        <Button Content="Фильтрация id" Click ="Button_Click_1"  HorizontalAlignment="Left" Margin="547,114,0,0" VerticalAlignment="Top"/>
+        <Button Content="Обновление"  Click="Button_Click_2"  HorizontalAlignment="Left" Margin="547,217,0,0" VerticalAlignment="Top"/>
+        <Button Content="Изменение" Click="Button_Click_3"  HorizontalAlignment="Left" Margin="557,258,0,0" VerticalAlignment="Top"/>
+        <Label Content="Id фильтрация и изменения" HorizontalAlignment="Left" Margin="572,-3,0,0" VerticalAlignment="Top"/>
+        <Label Content="Название контракта" HorizontalAlignment="Left" Margin="572,35,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

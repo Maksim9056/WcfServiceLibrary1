@@ -39,8 +39,7 @@ namespace WpfApp1
             Contrack contrack = new Contrack(0, "Treate");
             service1.AddGetDB(contrack);
 
-             var contracks    = service1.SelectDb();
-            Data.ItemsSource = service1.contracks;
+   
             //Dom.Text;
             //while (true)
             //{
@@ -63,8 +62,63 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int values = Convert.ToInt32(Dom.Text);
-            service1.DeleteDB(values);
+            try
+            {
+
+
+                int values = Convert.ToInt32(Dom.Text);
+                service1.DeleteDB(values);
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int values = Convert.ToInt32(Dom.Text);
+
+                var contract = service1.SelectDb1(values);
+                filtr.Text = contract.Name_Contrack;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+
+                var contracks = service1.SelectDb();
+                Data.ItemsSource = service1.contracks;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                int ID = Convert.ToInt32(Dom.Text);
+                string namecontackt = filtr.Text;
+                Contrack contrack = new Contrack(ID, namecontackt);
+                service1.Update(contrack);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

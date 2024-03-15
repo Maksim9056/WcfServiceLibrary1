@@ -110,14 +110,54 @@ namespace WcfServiceLibrary1
 
         public List<Contrack> SelectDb()
         {
-
-            using (WorkForData WorkForData = new WorkForData())
+            try
             {
-                contracks = WorkForData.Contrack.ToList();
+
+
+                using (WorkForData WorkForData = new WorkForData())
+                {
+                    contracks = WorkForData.Contrack.ToList();
+                }
+            }
+            catch { 
             }
 
-
             return contracks;
+        }
+
+        public Contrack SelectDb1(int id)
+        {
+            Contrack contrack = null;
+
+            try
+            {
+
+
+                using (WorkForData WorkForData = new WorkForData())
+                {
+                    contrack = WorkForData.Contrack.FirstOrDefault(i => i.Id == id);
+                }
+            }
+            catch
+            {
+            
+            
+            }
+
+            return contrack;
+        }
+
+        public void Update(Contrack contrackt)
+        {
+            using (WorkForData WorkForData = new WorkForData())
+            {
+                var   update = WorkForData.Contrack.FirstOrDefault(i => i.Id == contrackt.Id);
+                update.Name_Contrack = contrackt.Name_Contrack;
+
+                // Save the changes to the database
+                WorkForData.SaveChanges();
+            }
+            //throw new System.NotImplementedException();
         }
     }
 

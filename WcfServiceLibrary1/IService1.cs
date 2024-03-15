@@ -26,8 +26,9 @@ namespace WcfServiceLibrary1
         [OperationContract]
 
         List <Contrack> SelectDb();
+        Contrack SelectDb1(int id);
         void DeleteDB(int id);
-
+        void Update(Contrack contrackt);
         string Push(int id);
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
