@@ -1,16 +1,20 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using static WcfServiceLibrary1.Service1;
 namespace WcfServiceLibrary1
 {
     // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени класса "Service1" в коде и файле конфигурации.
     public class Service1 : IService1
     {
         public List<Contrack> Services = new List<Contrack>();
+        public List<Contrack> contracks = new List<Contrack>();
+
         public string AddGet(Contrack contrack)
         {
 
@@ -67,5 +71,79 @@ namespace WcfServiceLibrary1
 
             return contrack1.Name_Contrack;
         }
+
+
+        
+        public void AddGetDB(Contrack contrack)
+        {
+
+
+            using (WorkForData WorkForData = new WorkForData())
+            {
+
+                WorkForData.Contrack.AddRange(contrack);
+                WorkForData.SaveChanges();
+            }
+        }
+
+        public void DeleteDB(int id)
+        {
+
+            using (WorkForData WorkForData = new WorkForData())
+            {
+                Contrack user = WorkForData.Contrack.FirstOrDefault(u => u.Id == id);
+                if (user != null)
+                {
+                    WorkForData.Contrack.Remove(user);
+                    WorkForData.SaveChanges();
+                }
+            }
+            //throw new System.NotImplementedException();
+        }
+
+        public void AddCreateDB()
+        {
+            using (WorkForData WorkForData = new WorkForData())
+            { 
+            }
+        }
+
+        public List<Contrack> SelectDb()
+        {
+
+            using (WorkForData WorkForData = new WorkForData())
+            {
+                contracks = WorkForData.Contrack.ToList();
+            }
+
+
+            return contracks;
+        }
     }
-}
+
+    public class WorkForData : DbContext
+    {
+
+        public WorkForData(DbContextOptions<WorkForData> options) : base(options)
+        {
+        }
+
+        public DbSet<Contrack> Contrack { get; set; } = null;
+
+        public WorkForData()
+        {
+            try
+            {
+                Database.EnsureCreated();
+            }
+            catch
+            {
+
+            }
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Wcf;Username=postgres;Password=1");
+        }
+    }
+ }

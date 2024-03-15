@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WcfServiceLibrary1;
+using static WcfServiceLibrary1.Service1;
 
 namespace WpfApp1
 {
@@ -22,6 +23,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Service1 service1 = new Service1();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,14 +32,39 @@ namespace WpfApp1
 
         private void acceptButton_Click(object sender, RoutedEventArgs e)
         {
-            using (ServiceHost host = new ServiceHost(typeof(Service1)))
-            {
-                host.Open();
-                Console.WriteLine("Сервис запущен.");
-                Console.WriteLine("Нажмите Enter для остановки сервиса…");
-                Console.ReadLine();
-                host.Close();
-            }
+
+
+
+            service1.AddCreateDB();
+            Contrack contrack = new Contrack(0, "Treate");
+            service1.AddGetDB(contrack);
+
+             var contracks    = service1.SelectDb();
+            Data.ItemsSource = service1.contracks;
+            //Dom.Text;
+            //while (true)
+            //{
+            //    Uri uri = new Uri("http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/Service1/mex");
+            //    using (ServiceHost host = new ServiceHost(typeof(Service1), uri))
+            //    {
+            //        host.Open();
+            //        Console.WriteLine("Сервис запущен.");
+            //        Console.WriteLine("Нажмите Enter для остановки сервиса…");
+            //        Console.ReadLine();
+            //        host.Close();
+            //    }
+            //}
+
+        }
+        private void Data_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int values = Convert.ToInt32(Dom.Text);
+            service1.DeleteDB(values);
         }
     }
 }

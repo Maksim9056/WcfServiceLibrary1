@@ -7,7 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" Click="acceptButton_Click" HorizontalAlignment="Left" Margin="135,174,0,0" VerticalAlignment="Top"/>
-
+        <Button Content="Создать" Click="acceptButton_Click" HorizontalAlignment="Left" Margin="547,149,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Dom"   HorizontalAlignment="Left" Margin="572,23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="Data" 
+                 SelectedCellsChanged="Data_SelectedCellsChanged"
+                  AutoGenerateColumns="False" 
+                  CanUserResizeColumns="True" 
+                  CanUserResizeRows="False" 
+                  CanUserSortColumns="True" 
+                  SelectionMode="Single" 
+                  SelectionUnit="Cell" 
+                  IsReadOnly="True" 
+                  HorizontalAlignment="Left"  
+            VerticalAlignment="Top"
+            HorizontalScrollBarVisibility="Auto" 
+                  VerticalScrollBarVisibility="Auto" Margin="10,10,0,0" Width="440" RenderTransformOrigin="0.576,0.537" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header ="ID"  Binding="{Binding Id}" Width="Auto" />
+                <DataGridTextColumn Header="Name_Contrack" Binding="{Binding Name_Contrack}" Width="Auto"  />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox HorizontalAlignment="Left" Margin="572,61,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Удалить" Click="Button_Click" HorizontalAlignment="Left" Margin="547,184,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

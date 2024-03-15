@@ -9,7 +9,9 @@ namespace Kt1
     {
         static void Main(string[] args)
         {
-            using (ServiceHost host = new ServiceHost(typeof(Service1)))
+            Uri uri = new Uri("http://localhost:8733/Design_Time_Addresses/WcfServiceLibrary1/Service1/");
+
+            using (ServiceHost host = new ServiceHost(typeof(Service1), uri))
             {
                 host.Open();
                 Console.WriteLine("Сервис запущен.");
