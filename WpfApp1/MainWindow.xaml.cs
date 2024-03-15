@@ -28,17 +28,26 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            service1.AddCreateDB();
+
         }
 
         private void acceptButton_Click(object sender, RoutedEventArgs e)
         {
 
+            try
+            {
 
 
-            service1.AddCreateDB();
-            Contrack contrack = new Contrack(0, "Treate");
-            service1.AddGetDB(contrack);
+                int ID = Convert.ToInt32(Dom.Text);
+                string namecontackt = filtr.Text;
+                Contrack contrack = new Contrack(ID, namecontackt);
+                service1.AddGetDB(contrack);
+            }
+            catch
+            {
 
+            }
    
             //Dom.Text;
             //while (true)
