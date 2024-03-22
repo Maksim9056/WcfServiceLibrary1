@@ -21,14 +21,23 @@ namespace WcfServiceLibrary1
         [OperationContract]
 
         void AddCreateDB();
+        [OperationContract]
 
-        void  AddGetDB(Contrack contrack);
+        void AddGetDB(Contrack contrack);
         [OperationContract]
 
         List <Contrack> SelectDb();
+        [OperationContract]
+
         Contrack SelectDb1(int id);
+        [OperationContract]
+
         void DeleteDB(int id);
+        [OperationContract]
+
         void Update(Contrack contrackt);
+        [OperationContract]
+
         string Push(int id);
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
