@@ -77,6 +77,7 @@ namespace WcfServiceLibrary1
         public void AddGetDB(Contrack contrack)
         {
 
+            Services.Add(contrack);
 
             using (WorkForData WorkForData = new WorkForData())
             {
@@ -88,7 +89,8 @@ namespace WcfServiceLibrary1
 
         public void DeleteDB(int id)
         {
-
+             var CON =   Services.FirstOrDefault(U =>U.Id ==id);
+            Services.Remove(CON);
             using (WorkForData WorkForData = new WorkForData())
             {
                 Contrack user = WorkForData.Contrack.FirstOrDefault(u => u.Id == id);
@@ -103,6 +105,7 @@ namespace WcfServiceLibrary1
 
         public void AddCreateDB()
         {
+           
             using (WorkForData WorkForData = new WorkForData())
             { 
             }
@@ -118,6 +121,8 @@ namespace WcfServiceLibrary1
                 {
                     contracks = WorkForData.Contrack.ToList();
                 }
+                contracks = Services.ToList();
+
             }
             catch { 
             }
@@ -127,16 +132,20 @@ namespace WcfServiceLibrary1
 
         public Contrack SelectDb1(int id)
         {
-            Contrack contrack = null;
-
+            //var CON = Services.FirstOrDefault(U => U.Id == id);
+            //Services.
             try
             {
+         
+                
+                var s =Services.FirstOrDefault(predicate => predicate.Id == id);
+                return s;
 
 
-                using (WorkForData WorkForData = new WorkForData())
-                {
-                    contrack = WorkForData.Contrack.FirstOrDefault(i => i.Id == id);
-                }
+                //using (WorkForData WorkForData = new WorkForData())
+                //{
+                //    contrack = WorkForData.Contrack.FirstOrDefault(i => i.Id == id);
+                //}
             }
             catch
             {
@@ -144,20 +153,33 @@ namespace WcfServiceLibrary1
             
             }
 
-            return contrack;
+            return null;
         }
 
         public void Update(Contrack contrackt)
         {
-            using (WorkForData WorkForData = new WorkForData())
+            try
             {
-                var   update = WorkForData.Contrack.FirstOrDefault(i => i.Id == contrackt.Id);
-                update.Name_Contrack = contrackt.Name_Contrack;
+                   var contrack = Services.FirstOrDefault(predicate => predicate.Id == contrackt.Id);
+                    Services.Remove(contrack);
 
-                // Save the changes to the database
-                WorkForData.SaveChanges();
+                    Services.Add(contrackt);
+                    //Services[contrack.Id] = contrackt;
+                //using (WorkForData WorkForData = new WorkForData())
+                //{
+                //    var update = WorkForData.Contrack.FirstOrDefault(i => i.Id == contrackt.Id);
+                //    update.Name_Contrack = contrackt.Name_Contrack;
+
+                //    Save the changes to the database
+                //    WorkForData.SaveChanges();
+                //}
+                //throw new System.NotImplementedException();
             }
-            //throw new System.NotImplementedException();
+            catch
+            {
+
+
+            }
         }
     }
 
